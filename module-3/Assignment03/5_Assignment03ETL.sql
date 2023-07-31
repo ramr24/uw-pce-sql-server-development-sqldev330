@@ -3,7 +3,7 @@
 -- Desc:This file will drop and create an ETL process for module 03's assignment. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created File
--- Todo: <Date>,<Name>,Completed File
+-- Todo: 07/30/23, Ramkumar Rajanbabu, Started Assignment 3
 --*************************************************************************--
 
 Use DWEmployeeProjects;
@@ -70,18 +70,24 @@ Create Or Alter Proc pETLDropFks
 -- Desc:This Sproc drops the DW foreign keys. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Added code to drop more FKs
+-- Todo: 07/30/23, Ramkumar Rajanbabu, Added code to drop more FKs
 --*************************************************************************--
 As 
 Begin
   Declare @RC int = 0;
   Begin Try
 	  Select 'Todo: Drop FK for DimEmployees';
+	  -- DROP CONSTRAINT
+	  ALTER TABLE FactEmployeeProjectHours 
+		DROP CONSTRAINT FK_FactEmployeeProjectHours_DimEmployees
 
 	  Select 'Todo: Drop FK for DimProjects';
+	  -- DROP CONSTRAINT
+	  ALTER TABLE FactEmployeeProjectHours 
+	    DROP CONSTRAINT FK_FactEmployeeProjectHours_DimProjects
 
-	  Alter Table FactEmployeeProjectHours 
-	    Drop Constraint FK_FactEmployeeProjectHours_DimDates;
+	  ALTER TABLE FactEmployeeProjectHours 
+	    DROP CONSTRAINT FK_FactEmployeeProjectHours_DimDates;
 
 	  Exec pETLInsMetadata
 	        @ETLAction = 'pETLDropFks'
@@ -114,10 +120,10 @@ Begin
     Truncate Table DimDates;	
    
 	  Select 'Todo: Clear DimEmployees';
-
+	  -- TRUNCATE TABLE
 
 	  Select 'Todo: Clear DimProjects';
-
+	  -- TRUNCATE TABLE
 
 	  Exec pETLInsMetadata
 	        @ETLAction = 'pETLTruncateTables'

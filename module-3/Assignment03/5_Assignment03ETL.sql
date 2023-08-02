@@ -4,6 +4,7 @@
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created File
 -- Todo: 07/30/23, Ramkumar Rajanbabu, Started Assignment 3
+-- Todo: 07/31/23, Ramkumar Rajanbabu, Completed pETLTruncateTables, pETLDimEmployees, pETLDimProjects, pETLReplaceFks
 --*************************************************************************--
 
 Use DWEmployeeProjects;
@@ -110,7 +111,7 @@ Create Or Alter Proc pETLTruncateTables
 -- Desc:This Sproc clears the data from all DW tables. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code to clear all table data
+-- Todo: 07/31/23, Ramkumar Rajanbabu, Completed code to clear all table data
 --*************************************************************************--
 As 
 Begin 
@@ -120,10 +121,12 @@ Begin
     Truncate Table DimDates;	
    
 	  Select 'Todo: Clear DimEmployees';
-	  -- TRUNCATE TABLE
+	  -- TRUNCATE TABLE only after DROP CONSTRAINT
+	  TRUNCATE TABLE DimEmployees
 
 	  Select 'Todo: Clear DimProjects';
-	  -- TRUNCATE TABLE
+	  -- TRUNCATE TABLE only after DROP CONSTRAINT
+	  TRUNCATE TABLE DimProjects
 
 	  Exec pETLInsMetadata
 	        @ETLAction = 'pETLTruncateTables'
@@ -160,7 +163,7 @@ Create Or Alter Proc pETLDimEmployees
 -- Desc:This Sproc fills the DimEmployees table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code to fills the DimEmployees table. 
+-- Todo: 07/31/23, Ramkumar Rajanbabu, Completed code to fills the DimEmployees table. 
 --*************************************************************************--
 As 
 Begin
@@ -170,6 +173,13 @@ Begin
 	Begin Tran;
 
 	  Select 'Todo: Add INSERT-SELECT Code to DimEmployees sproc'
+	  -- INSERT INTO SELECT
+	  INSERT INTO DimEmployees
+	  (EmployeeID, EmployeeName)
+	  SELECT
+		[EmployeeID],
+		[EmployeeName]
+	  FROM vETLDimEmployees
 
 	  Set @Message = 'Filled DimEmployees (' + Cast(@@RowCount as varchar(100)) + ' rows)';
 	  Commit Tran;
@@ -207,21 +217,44 @@ Create Or Alter Proc pETLDimProjects
 -- Desc:This Sproc fills the DimProjects table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code to fills the DimProjects table. 
+-- Todo: 07/31/23, Ramkumar Rajanbabu, Completed code to fills the DimProjects table. 
 --*************************************************************************--
 As 
 Begin
   Declare @RC int = 0;
 	Declare @Message varchar(1000);
   Begin Try
-	  Select 'Todo: Complete DimProjects sproc (TRANSACTION)'	  
-	  Select 'Todo: Complete DimProjects sproc (INSERT-SELECT)'
-	  Select 'Todo: Complete DimProjects sproc (LOGGING)'    
+	  Select 'Todo: Complete DimProjects sproc (TRANSACTION)'
+	  -- BEGIN TRAN
+	  BEGIN TRAN;
+
+		Select 'Todo: Complete DimProjects sproc (INSERT-SELECT)'
+		-- INSERT INTO SELECT
+		INSERT INTO DimProjects
+		(ProjectID, ProjectName)
+		SELECT
+			[ProjectID],
+			[ProjectName]
+		FROM vETLDimProjects
+
+		Select 'Todo: Complete DimProjects sproc (LOGGING)'
+		-- SET COMMIT TRAN EXEC
+		SET @Message = 'Filled DimProjects (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
+		COMMIT TRAN;
+		EXEC pETLDimProjects
+			@ELTAction = 'pETLDimProjects',
+			@ELTMetadata = @Message;
     Set @RC = 1;
   End Try
   Begin Catch
-	  Select 'Todo: Complete DimProjects sproc (TRANSACTION)'	
-	  Select 'Todo: Complete DimProjects sproc (LOGGING)'     
+	  Select 'Todo: Complete DimProjects sproc (TRANSACTION)'
+	  IF @@TRANCOUNT > 0 ROLLBACK;
+
+	  Select 'Todo: Complete DimProjects sproc (LOGGING)'
+	  DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+	  EXEC pETLDimProjects
+			@ELTAction = 'pETLDimProjects',
+			@ELTMetadata = @Message;
     Set @RC = -1;
   End Catch
   Return @RC;
@@ -331,23 +364,29 @@ Go
 go
 Create Or Alter View vETLFactEmployeeProjectHours
 As
-	Select 'Todo: Complete the Select Code'	as [Todo],
-	   [EmployeeProjectHoursID] = EmployeeProjectHoursID
-	  ,EmployeeKey = 1 -- Todo: Fix this using a join
-	  ,ProjectKey = 1 -- Todo Fix this using a join
-	  ,DateKey =  dd.DateKey
-	  ,HoursWorked = Hrs
-	From EmployeeProjects.dbo.EmployeeProjectHours as eph
-	 Join DimDates as dd
-	  On Cast(Convert(nvarchar(50), eph.[Date], 112) as int) = dd.DateKey
+	-- Select 'Todo: Complete the Select Code'	as [Todo],
+	SELECT
+		[EmployeeProjectHoursID] = EmployeeProjectHoursID,
+		EmployeeKey = de.EmployeeKey, -- Todo: Fix this using a join
+		ProjectKey = dp.ProjectKey, -- Todo Fix this using a join
+		DateKey =  dd.DateKey,
+		HoursWorked = Hrs
+	FROM EmployeeProjects.dbo.EmployeeProjectHours as eph
+		Join DimDates as dd
+			On Cast(Convert(nvarchar(50), eph.[Date], 112) as int) = dd.DateKey
+		JOIN DimEmployees AS de
+			On eph.EmployeeID = de.EmployeeKey
+		JOIN DimProjects AS dp
+			On eph.ProjectID = dp.ProjectKey
 
 Go
+
 Create Or Alter Proc pETLFactEmployeeProjectHours
 --*************************************************************************--
 -- Desc:This Sproc fills the FactEmployeeProjectHours table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code to fills the FactEmployeeProjectHours table. 
+-- Todo: 07/31/23, Ramkumar Rajanbabu, Completed code to fills the FactEmployeeProjectHours table. 
 --*************************************************************************--
 As 
 Begin
@@ -389,7 +428,7 @@ Create Or Alter Proc pETLReplaceFks
 -- Desc:This Sproc replaces the DW foreign keys. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Added code to replace more FKs
+-- Todo: 07/31/23, Ramkumar Rajanbabu, Added code to replace more FKs
 --*************************************************************************--
 As 
 Begin
@@ -399,9 +438,15 @@ Begin
       Add Constraint FK_FactEmployeeProjectHours_DimDates
         Foreign Key(DateKey) References DimDates(DateKey);
 
- 	 Select 'Todo: Add FK_FactEmployeeProjectHours_DimProjects'
-	    
+	Select 'Todo: Add FK_FactEmployeeProjectHours_DimProjects'
+	ALTER TABLE FactEmployeeProjectHours 
+      ADD CONSTRAINT FK_FactEmployeeProjectHours_DimProjects
+        FOREIGN KEY(ProjectKey) REFERENCES DimProjects(ProjectKey);
+	
 	 Select 'Todo: Add FK_FactEmployeeProjectHours_DimEmployees'
+	 ALTER TABLE FactEmployeeProjectHours 
+      ADD CONSTRAINT FK_FactEmployeeProjectHours_DimEmployees
+        FOREIGN KEY(EmployeeKey) REFERENCES DimEmployees(EmployeeKey);
 
 	 Exec pETLInsMetadata
 	      @ETLAction = 'pETLReplaceFks'

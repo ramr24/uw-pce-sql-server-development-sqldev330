@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="local  tempdbADONet"
+  DTS:DTSID="{D02AB592-054A-40AD-B414-EC628C7E5B74}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=(local);Initial Catalog=tempdb;Integrated Security=True;Application Name=SSIS-IncrementalLoadingDemos-{D02AB592-054A-40AD-B414-EC628C7E5B74}(local).tempdb1;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

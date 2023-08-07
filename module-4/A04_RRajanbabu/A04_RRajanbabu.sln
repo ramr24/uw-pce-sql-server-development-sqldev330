@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33801.447
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{D866647D-1104-4DE0-8AAF-34305E8F1870}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\1_Visual ETL with SSIS_Ch07.pdf = Documents\1_Visual ETL with SSIS_Ch07.pdf
+		Documents\1_Visual ETL with SSIS_Ch08_Optional.pdf = Documents\1_Visual ETL with SSIS_Ch08_Optional.pdf
+		Documents\3_Assignment04MetadataWorksheet.xlsx = Documents\3_Assignment04MetadataWorksheet.xlsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{957A7917-EC40-4E5E-97AB-B4B064FC8C81}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\2_Assignment04SourceDatabase.sql = Scripts\2_Assignment04SourceDatabase.sql
+		Scripts\4_Assignment04DWDatabase.sql = Scripts\4_Assignment04DWDatabase.sql
+		Scripts\5_Assignment04ETL.sql = Scripts\5_Assignment04ETL.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{89917C57-3849-4BCB-9D9D-665B8D21AF5E}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B7B1B3D-D571-4756-A66D-8EB1D924EDE4}
+	EndGlobalSection
+EndGlobal

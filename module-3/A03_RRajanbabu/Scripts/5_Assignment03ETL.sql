@@ -6,6 +6,7 @@
 -- Todo: 07/30/23, Ramkumar Rajanbabu, Started Assignment 3
 -- Todo: 07/31/23, Ramkumar Rajanbabu, Completed pETLTruncateTables, pETLDimEmployees, pETLDimProjects, pETLReplaceFks
 -- Todo: 08/02/23, Ramkumar Rajanbabu, Completed Assignment but had issues with Exec pETLDimProjects 
+-- Todo: 08/07/23, Ramkumar Rajanbabu, Fixed issue with pETLDimProjects but same issue as Jeremy with 1 row count for pETLDimProjects
 --*************************************************************************--
 
 Use DWEmployeeProjects;
@@ -119,15 +120,16 @@ Begin
   Declare @RC int = 0;
   Begin Try
 	  Truncate Table FactEmployeeProjectHours;
-    Truncate Table DimDates;	
+	  
+	  Truncate Table DimDates;	
    
 	  Select 'Todo: Clear DimEmployees';
 	  -- TRUNCATE TABLE only after DROP CONSTRAINT
-	  TRUNCATE TABLE DimEmployees
+	  TRUNCATE TABLE DimEmployees;
 
 	  Select 'Todo: Clear DimProjects';
 	  -- TRUNCATE TABLE only after DROP CONSTRAINT
-	  TRUNCATE TABLE DimProjects
+	  TRUNCATE TABLE DimProjects;
 
 	  Exec pETLInsMetadata
 	        @ETLAction = 'pETLTruncateTables'
@@ -180,7 +182,7 @@ Begin
 	  SELECT
 		[EmployeeID],
 		[EmployeeName]
-	  FROM vETLDimEmployees
+	  FROM vETLDimEmployees;
 
 	  Set @Message = 'Filled DimEmployees (' + Cast(@@RowCount as varchar(100)) + ' rows)';
 	  Commit Tran;
@@ -236,15 +238,15 @@ Begin
 		SELECT
 			[ProjectID],
 			[ProjectName]
-		FROM vETLDimProjects
+		FROM vETLDimProjects;
 
 		Select 'Todo: Complete DimProjects sproc (LOGGING)'
 		-- SET COMMIT TRAN EXEC
 		SET @Message = 'Filled DimProjects (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
 		COMMIT TRAN;
-		EXEC pETLDimProjects
-			@ELTAction = 'pETLDimProjects',
-			@ELTMetadata = @Message;
+		EXEC pETLInsMetadata
+			@ETLAction = 'pETLDimProjects',
+			@ETLMetadata = @Message;
     Set @RC = 1;
   End Try
   Begin Catch
@@ -252,10 +254,10 @@ Begin
 	  IF @@TRANCOUNT > 0 ROLLBACK;
 
 	  Select 'Todo: Complete DimProjects sproc (LOGGING)'
-	  DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
-	  EXEC pETLDimProjects
-			@ELTAction = 'pETLDimProjects',
-			@ELTMetadata = @Message;
+	  DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+	  EXEC pETLInsMetadata
+			@ETLAction = 'pETLDimProjects',
+			@ETLMetadata = @ErrorMessage;
     Set @RC = -1;
   End Catch
   Return @RC;
@@ -376,9 +378,9 @@ As
 		Join DimDates as dd
 			On Cast(Convert(nvarchar(50), eph.[Date], 112) as int) = dd.DateKey
 		JOIN DimEmployees AS de
-			On eph.EmployeeID = de.EmployeeKey
+			On eph.EmployeeID = de.EmployeeID
 		JOIN DimProjects AS dp
-			On eph.ProjectID = dp.ProjectKey
+			On eph.ProjectID = dp.ProjectID
 
 Go
 

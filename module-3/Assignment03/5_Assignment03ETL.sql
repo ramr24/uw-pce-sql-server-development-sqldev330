@@ -5,6 +5,7 @@
 -- 2020-01-01,RRoot,Created File
 -- Todo: 07/30/23, Ramkumar Rajanbabu, Started Assignment 3
 -- Todo: 07/31/23, Ramkumar Rajanbabu, Completed pETLTruncateTables, pETLDimEmployees, pETLDimProjects, pETLReplaceFks
+-- Todo: 08/02/23, Ramkumar Rajanbabu, Completed Assignment but had issues with Exec pETLDimProjects 
 --*************************************************************************--
 
 Use DWEmployeeProjects;

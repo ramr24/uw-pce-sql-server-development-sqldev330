@@ -1,17 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.33920.266
+VisualStudioVersion = 16.0.33801.447
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{0FC09E9A-0DAD-4774-AD87-A76984448928}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{22778F7E-59DB-4962-89DF-6DCA9818033F}"
+	ProjectSection(SolutionItems) = preProject
+		..\Assignment03\1_ELT Processing with SQL_Ch06.pdf = ..\Assignment03\1_ELT Processing with SQL_Ch06.pdf
+		..\Assignment03\3_Assignment03MetadataWorksheet.xlsx = ..\Assignment03\3_Assignment03MetadataWorksheet.xlsx
+		Documents\Assignment03.pdf = Documents\Assignment03.pdf
+		..\Assignment03\Optional Designing a Data Warehouse_Ch04.pdf = ..\Assignment03\Optional Designing a Data Warehouse_Ch04.pdf
+		..\Assignment03\Optional_Creating a Data Warehouse_Ch05.pdf = ..\Assignment03\Optional_Creating a Data Warehouse_Ch05.pdf
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{4CCA6256-27D7-4DC1-879C-EE874F4501DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{D9FC947D-E7AD-4B03-A6E8-F28523C53E5E}"
+	ProjectSection(SolutionItems) = preProject
+		..\Assignment03\2_Assignment03SourceDatabase.sql = ..\Assignment03\2_Assignment03SourceDatabase.sql
+		..\Assignment03\4_Assignment03DWDatabase.sql = ..\Assignment03\4_Assignment03DWDatabase.sql
+		..\Assignment03\5_Assignment03ETL.sql = ..\Assignment03\5_Assignment03ETL.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{C7CC6BBF-A91F-4B6C-B7D1-5C48D9087705}"
+	ProjectSection(SolutionItems) = preProject
+		Reports\ETLLogReport.rdl = Reports\ETLLogReport.rdl
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EABDC477-B7BB-47A5-8CC5-C49AAD5D5530}
+		SolutionGuid = {A7C24931-FD55-4E89-8833-8194F589C289}
 	EndGlobalSection
 EndGlobal

@@ -457,3 +457,11 @@ Select * From [dbo].[DimProjects];
 Select * From [DimDates];
 Select * From [FactEmployeeProjectHours];
 Go
+
+-- Check SSIS Package
+Select * From [ETLMetadata];
+Select * From [dbo].[DimEmployees];
+Select * From [dbo].[DimProjects];
+Select * From [DimDates];
+Select * From [FactEmployeeProjectHours];
+GO

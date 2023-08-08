@@ -19,7 +19,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{957A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{89917C57-3849-4BCB-9D9D-665B8D21AF5E}"
 EndProject
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "A04ETLProcess", "A04ETLProcess\A04ETLProcess.dtproj", "{E652DB2A-D559-47AF-AD77-BC32E4CE7057}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E652DB2A-D559-47AF-AD77-BC32E4CE7057}.Development|Default.ActiveCfg = Development
+		{E652DB2A-D559-47AF-AD77-BC32E4CE7057}.Development|Default.Build.0 = Development
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

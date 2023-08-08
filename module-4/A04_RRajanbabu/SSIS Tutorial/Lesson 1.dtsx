@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/8/2023 4:25:57 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="RCA-LENOVO-LAPT"
+  DTS:CreatorName="RCA-LENOVO-LAPT\kumar"
+  DTS:DTSID="{684BF3F4-7E3C-4719-9066-E91DB74FDC52}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{20DBC1D5-E02C-4A58-A811-3FD25A78B361}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>

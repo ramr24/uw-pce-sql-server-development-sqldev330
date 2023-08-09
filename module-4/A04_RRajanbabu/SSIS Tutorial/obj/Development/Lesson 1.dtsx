@@ -9,10 +9,10 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5270.0"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package"
+  DTS:ObjectName="Lesson 1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{5257671D-F757-46CF-AB16-D4130F18506C}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{094481E9-503E-4183-BE0A-E1C9363B784E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -53,8 +53,8 @@
               <connections>
                 <connection
                   refId="Package\Extract Sample Currency Data\Extract Sample Currency Data.Connections[FlatFileConnection]"
-                  connectionManagerID="{CDA7B6E5-B8F7-48CB-87C8-935CB17FEEC2}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Sample Flat File Source Data]"
+                  connectionManagerID="{CDA7B6E5-B8F7-48CB-87C8-935CB17FEEC2}:invalid"
+                  connectionManagerRefId="{CDA7B6E5-B8F7-48CB-87C8-935CB17FEEC2}:invalid"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
@@ -832,7 +832,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -842,7 +842,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -855,7 +855,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -865,7 +865,7 @@ where [refTable].[FullDateAlternateKey] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

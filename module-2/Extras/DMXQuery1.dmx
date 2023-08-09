@@ -1,0 +1,14 @@
+EVALUATE SUMMARIZECOLUMNS(
+  'FactInventories'[InventoryDate]
+, 'DimCategories'[CategoryName]
+, 'DimProducts'[ProductName]
+, "Inventory Count"
+, [Inventory Count]
+)
+go
+SELECT 
+  NON EMPTY { [Measures].[Inventory Count] } ON COLUMNS
+, NON EMPTY { ([FactInventories].[InventoryDate].[InventoryDate].ALLMEMBERS 
+* [DimCategories].[CategoryName].[CategoryName].ALLMEMBERS 
+* [DimProducts].[ProductName].[ProductName].ALLMEMBERS ) } ON ROWS 
+FROM [Model];

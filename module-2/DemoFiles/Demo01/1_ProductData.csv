@@ -1,0 +1,5 @@
+"Name","Price","Category"
+"ProdA",9.99,"Cat1"
+"ProdB",1.99,"Cat1"
+"ProdC",":1.99,"Cat1,Cat2"
+

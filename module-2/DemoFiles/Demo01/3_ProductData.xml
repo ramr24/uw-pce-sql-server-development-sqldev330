@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Products>
+  <row>
+    <Name>ProdA</Name>
+    <Price>9.99</Price>
+    <Category>Cat1</Category>
+  </row>
+  <row>
+    <Name>ProdB</Name>
+    <Price>1.99</Price>
+    <Category>Cat1</Category>
+  </row>
+  <row>
+    <Name>ProdC</Name>
+    <Price>1.99</Price>
+    <Category>Cat1</Category>
+    <Category>Cat2</Category>
+  </row>
+</Products>

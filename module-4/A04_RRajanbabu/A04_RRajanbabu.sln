@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\1_Visual ETL with SSIS_Ch07.pdf = Documents\1_Visual ETL with SSIS_Ch07.pdf
 		Documents\1_Visual ETL with SSIS_Ch08_Optional.pdf = Documents\1_Visual ETL with SSIS_Ch08_Optional.pdf
 		Documents\3_Assignment04MetadataWorksheet.xlsx = Documents\3_Assignment04MetadataWorksheet.xlsx
+		Documents\Assignment04.pdf = Documents\Assignment04.pdf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{957A7917-EC40-4E5E-97AB-B4B064FC8C81}"

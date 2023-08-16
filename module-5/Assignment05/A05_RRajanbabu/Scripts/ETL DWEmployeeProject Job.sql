@@ -1,17 +1,16 @@
+--*************************************************************************--
+-- Title: Module05 Create Job Script
+-- Desc: This file will create a SQL Server Agent Job for module 05's assignment.
+-- Change Log: When,Who,What
+-- 08/16/23, Ramkumar Rajanbabu, Created file and cleaned up error handling
+--*************************************************************************--
+
 USE [msdb]
 GO
 
-/****** Object:  Job [ETL DWEmployeeProjects]    Script Date: 8/16/2023 12:58:07 PM ******/
+BEGIN TRY
 BEGIN TRANSACTION
-DECLARE @ReturnCode INT
-SELECT @ReturnCode = 0
-/****** Object:  JobCategory [[Uncategorized (Local)]]    Script Date: 8/16/2023 12:58:07 PM ******/
-IF NOT EXISTS (SELECT name FROM msdb.dbo.syscategories WHERE name=N'[Uncategorized (Local)]' AND category_class=1)
-BEGIN
-EXEC @ReturnCode = msdb.dbo.sp_add_category @class=N'JOB', @type=N'LOCAL', @name=N'[Uncategorized (Local)]'
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-
-END
+DECLARE @ReturnCode INT = 0
 
 DECLARE @jobId BINARY(16)
 EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'ETL DWEmployeeProjects', 
@@ -24,8 +23,7 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'ETL DWEmployeeProjects',
 		@description=N'Run SSIS Package.', 
 		@category_name=N'[Uncategorized (Local)]', 
 		@owner_login_name=N'sa', @job_id = @jobId OUTPUT
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
-/****** Object:  Step [Run Package]    Script Date: 8/16/2023 12:58:07 PM ******/
+
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Run Package', 
 		@step_id=1, 
 		@cmdexec_success_code=0, 
@@ -40,9 +38,9 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Run Pack
 		@database_name=N'master', 
 		@flags=0, 
 		@proxy_name=N'SQL330'
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
 EXEC @ReturnCode = msdb.dbo.sp_update_job @job_id = @jobId, @start_step_id = 1
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
 EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'Run at 1 AM', 
 		@enabled=1, 
 		@freq_type=4, 
@@ -56,14 +54,12 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobschedule @job_id=@jobId, @name=N'Run at 1 
 		@active_start_time=10000, 
 		@active_end_time=235959, 
 		@schedule_uid=N'0820b93b-3ed6-4e05-aea2-52ca86847aa5'
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
 EXEC @ReturnCode = msdb.dbo.sp_add_jobserver @job_id = @jobId, @server_name = N'(local)'
-IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
+
 COMMIT TRANSACTION
-GOTO EndSave
-QuitWithRollback:
-    IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
-EndSave:
+END TRY
+BEGIN CATCH
+	IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
+END CATCH
 GO
-
-

@@ -7,12 +7,12 @@
   DTS:CreatorName="RRLAPTOP1\Admin"
   DTS:DTSID="{53AF631A-A77F-4DDB-AB20-55FE167AEEE2}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="15.0.2000.152"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{ECC217FE-20B8-41DE-9BE7-7B435CB19244}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{B1319B00-D875-4367-BCC9-4E558C45F9C3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,9 @@
       DTS:ObjectName="localhost.DWEmployeeProjects">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DWEmployeeProjects;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DWEmployeeProjects;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}localhost.DWEmployeeProjects;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -264,60 +266,15 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="208,41.6"
-          Id="Package\Pre-load Sequence Container\Drop Fks Execute SQL Task"
-          TopLeft="33.8571428206502,5.50000000000007" />
+          Size="228,41.3333333333334"
+          Id="Package\Load Dimension Tables Sequence Container\Fill DimDates Execute SQL Task"
+          TopLeft="33.2000000000001,122.288234082226" />
         <NodeLayout
-          Size="224,41.6"
-          Id="Package\Pre-load Sequence Container\Clear Tables Execute SQL Task"
-          TopLeft="28,68.8647053461176" />
-        <EdgeLayout
-          Id="Package\Pre-load Sequence Container.PrecedenceConstraints[Constraint]"
-          TopLeft="33.8571428206502,26.3000000000001">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-5.85714282065024,63.3647053461176"
-              Start="0,0"
-              End="-13.3571428206502,63.3647053461176">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-24.3571428206502,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-24.3571428206502,0"
-                    Point2="-28.3571428206502,0"
-                    Point3="-28.3571428206502,4" />
-                  <mssgle:LineSegment
-                    End="-28.3571428206502,59.3647053461176" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-28.3571428206502,59.3647053461176"
-                    Point2="-28.3571428206502,63.3647053461176"
-                    Point3="-24.3571428206502,63.3647053461176" />
-                  <mssgle:LineSegment
-                    End="-13.3571428206502,63.3647053461176" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="257.6,150.4"
-          Size="257.6,193.6"
-          Id="Package\Pre-load Sequence Container"
-          TopLeft="30.7142862373469,68.8235303769888" />
-        <NodeLayout
-          Size="251.2,41.6"
+          Size="251.333333333334,41.3333333333334"
           Id="Package\Load Dimension Tables Sequence Container\Fill DimEmployees Execute SQL Task"
           TopLeft="23.7428571793499,5.50000000000007" />
         <NodeLayout
-          Size="238.4,41.6"
+          Size="238.666666666667,41.3333333333334"
           Id="Package\Load Dimension Tables Sequence Container\Fill DimProjects Execute SQL Task"
           TopLeft="28,63.511764094574" />
         <EdgeLayout
@@ -354,10 +311,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="228,41.6"
-          Id="Package\Load Dimension Tables Sequence Container\Fill DimDates Execute SQL Task"
-          TopLeft="33.2000000000001,122.288234082226" />
         <EdgeLayout
           Id="Package\Load Dimension Tables Sequence Container.PrecedenceConstraints[Constraint 1]"
           TopLeft="28,84.311764094574">
@@ -395,32 +348,81 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="302.4,183.2"
-          Size="302.4,226.4"
+          PanelSize="302.666666666667,183.333333333334"
+          Size="302.666666666667,226.666666666667"
           Id="Package\Load Dimension Tables Sequence Container"
           TopLeft="329.285719893417,65.0000009116006" />
         <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\Post-Load Sequence Container\Replace FKs Execute SQL Task"
-          TopLeft="5.5,5.50000000000007" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="233.6,73.6"
-          Size="233.6,116.8"
-          Id="Package\Post-Load Sequence Container"
-          TopLeft="405.000006897109,338.000004740323" />
-        <NodeLayout
-          Size="308,41.6"
+          Size="308,41.3333333333334"
           Id="Package\Load Fact Tables Sequence Container\Fill FactEmployeeProjectHours Execute SQL Task"
           TopLeft="5.5,5.50000000000007" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="319.2,75.2"
-          Size="319.2,118.4"
+          PanelSize="319.333333333334,75.3333333333334"
+          Size="319.333333333334,118.666666666667"
           Id="Package\Load Fact Tables Sequence Container"
           TopLeft="34.2857148695966,337.235298847245" />
+        <NodeLayout
+          Size="222.666666666667,41.3333333333334"
+          Id="Package\Post-Load Sequence Container\Replace FKs Execute SQL Task"
+          TopLeft="5.5,5.50000000000007" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="233.333333333334,74"
+          Size="233.333333333334,116.666666666667"
+          Id="Package\Post-Load Sequence Container"
+          TopLeft="405.000006897109,338.000004740323" />
+        <NodeLayout
+          Size="224,41.3333333333334"
+          Id="Package\Pre-load Sequence Container\Clear Tables Execute SQL Task"
+          TopLeft="28,68.8647053461176" />
+        <NodeLayout
+          Size="208,41.3333333333334"
+          Id="Package\Pre-load Sequence Container\Drop Fks Execute SQL Task"
+          TopLeft="33.8571428206502,5.50000000000007" />
+        <EdgeLayout
+          Id="Package\Pre-load Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="33.8571428206502,26.3000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-5.85714282065024,63.3647053461176"
+              Start="0,0"
+              End="-13.3571428206502,63.3647053461176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-24.3571428206502,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-24.3571428206502,0"
+                    Point2="-28.3571428206502,0"
+                    Point3="-28.3571428206502,4" />
+                  <mssgle:LineSegment
+                    End="-28.3571428206502,59.3647053461176" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.3571428206502,59.3647053461176"
+                    Point2="-28.3571428206502,63.3647053461176"
+                    Point3="-24.3571428206502,63.3647053461176" />
+                  <mssgle:LineSegment
+                    End="-13.3571428206502,63.3647053461176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="257.333333333334,150.666666666667"
+          Size="257.333333333334,193.333333333334"
+          Id="Package\Pre-load Sequence Container"
+          TopLeft="30.7142862373469,68.8235303769888" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="288.314286237347,165.623530376989">

@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A30A
 		Scripts\5_Assignment06ETLReportingObjects.sql = Scripts\5_Assignment06ETLReportingObjects.sql
 	EndProjectSection
 EndProject
-Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "A06ETLProcess", "A06ETLProcess\A06ETLProcess.dtproj", "{82C52A9B-879C-4836-A5E1-03DB74C77069}"
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "A06ETLProcess", "A06ETLProcess\A06ETLProcess.dtproj", "{82C52A9B-879C-4836-A5E1-03DB74C77069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{6E120942-893F-45D9-A7C2-AD13BCAB0694}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\2_Assignment05MetadataWorksheet.xlsx = Documents\2_Assignment05MetadataWorksheet.xlsx
+		Documents\Assignment05.pdf = Documents\Assignment05.pdf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{A9CBB3C3-9E8E-4EF6-BF7E-886B980616C6}"

@@ -9,12 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{A9CBB3C3-9E8E-4EF6-BF7E-886B980616C6}"
+	ProjectSection(SolutionItems) = preProject
+		Reports\AutomationJobReport.rdl = Reports\AutomationJobReport.rdl
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A30A3199-5F64-4B57-858D-A54FF88F6E4C}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\1_Assignment05SourceDatabase.sql = Scripts\1_Assignment05SourceDatabase.sql
 		Scripts\3_Assignment05DWDatabase.sql = Scripts\3_Assignment05DWDatabase.sql
 		Scripts\4_Assignment05ETL.sql = Scripts\4_Assignment05ETL.sql
+		Scripts\ETL DWEmployeeProject Job.sql = Scripts\ETL DWEmployeeProject Job.sql
 	EndProjectSection
 EndProject
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "A05ETLProcess", "A05ETLProcess\A05ETLProcess.dtproj", "{82C52A9B-879C-4836-A5E1-03DB74C77069}"

@@ -19,7 +19,7 @@ Create or Alter View vJobHistory
 -- From Code on https://www.mssqltips.com/sqlservertip/2850/querying-sql-server-agent-job-history-data/
 As
 
-Select 
+Select Top 1000000
  [JobName] = j.name 
 ,[StepName] = h.step_name
 ,[RunDateTime] = msdb.dbo.agent_datetime(run_date, run_time)

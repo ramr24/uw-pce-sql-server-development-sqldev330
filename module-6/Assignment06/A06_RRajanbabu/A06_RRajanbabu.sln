@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A30A
 EndProject
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "A06ETLProcess", "A06ETLProcess\A06ETLProcess.dtproj", "{82C52A9B-879C-4836-A5E1-03DB74C77069}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "DWEmployeeProjectsReports", "DWEmployeeProjectsReports\DWEmployeeProjectsReports.rptproj", "{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Default = Debug|Default
@@ -36,6 +38,17 @@ Global
 		{82C52A9B-879C-4836-A5E1-03DB74C77069}.Development|Default.Build.0 = Development
 		{82C52A9B-879C-4836-A5E1-03DB74C77069}.Release|Default.ActiveCfg = Development
 		{82C52A9B-879C-4836-A5E1-03DB74C77069}.Release|Default.Build.0 = Development
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Debug|Default.ActiveCfg = Debug
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Debug|Default.Build.0 = Debug
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Debug|Default.Deploy.0 = Debug
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.DebugLocal|Default.Build.0 = DebugLocal
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Development|Default.ActiveCfg = Debug
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Development|Default.Build.0 = Debug
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Development|Default.Deploy.0 = Debug
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Release|Default.ActiveCfg = Release
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Release|Default.Build.0 = Release
+		{EEEF0FD3-7217-4E6B-B94B-9A2C896A7DAD}.Release|Default.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

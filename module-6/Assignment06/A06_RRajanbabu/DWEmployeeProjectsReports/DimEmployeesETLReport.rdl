@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DWEmployeeProjectDataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=localhost;Initial Catalog=DWEmployeeProjects</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>11f50741-9937-4bbe-9001-3ceab3a424ae</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="vETLDimEmployeesDataSet">
+      <Query>
+        <DataSourceName>DWEmployeeProjectDataSource</DataSourceName>
+        <CommandText>SELECT EmployeeID, EmployeeName
+FROM vETLDimEmployees</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="EmployeeID">
+          <DataField>EmployeeID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EmployeeName">
+          <DataField>EmployeeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="vDWEmployeeProjectsETLJobHistoryDataSet">
+      <Query>
+        <DataSourceName>DWEmployeeProjectDataSource</DataSourceName>
+        <CommandText>SELECT JobName, StepName, RunDateTime, RunDurationSeconds
+FROM   vDWEmployeeProjectsETLJobHistory</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="JobName">
+          <DataField>JobName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StepName">
+          <DataField>StepName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RunDateTime">
+          <DataField>RunDateTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="RunDurationSeconds">
+          <DataField>RunDurationSeconds</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="vDimEmployeesTopTenDataSet">
+      <Query>
+        <DataSourceName>DWEmployeeProjectDataSource</DataSourceName>
+        <CommandText>SELECT EmployeeKey, EmployeeID, EmployeeName
+FROM   vDimEmployeesTopTen</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="EmployeeKey">
+          <DataField>EmployeeKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EmployeeID">
+          <DataField>EmployeeID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="EmployeeName">
+          <DataField>EmployeeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="ETLMetadataForDimEmployeesDataSet">
+      <Query>
+        <DataSourceName>DWEmployeeProjectDataSource</DataSourceName>
+        <CommandText>SELECT ETLMetadataID, ETLDateAndTime, ETLAction, ETLMetadata
+FROM   ETLMetadata</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ETLMetadataID">
+          <DataField>ETLMetadataID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ETLDateAndTime">
+          <DataField>ETLDateAndTime</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ETLAction">
+          <DataField>ETLAction</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ETLMetadata">
+          <DataField>ETLMetadata</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>205b2ac4-ccf9-487d-8f92-886776803d2d</rd:ReportID>
+</Report>

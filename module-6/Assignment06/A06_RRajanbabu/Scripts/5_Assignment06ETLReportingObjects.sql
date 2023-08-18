@@ -8,8 +8,8 @@
 Use [DWEmployeeProjects];
 go
 -- Use these statements to check and clear the jobhistory table as needed
--- Select * From msdb.dbo.sysjobs;
--- Select * From msdb.dbo.sysjobhistory;
+Select * From msdb.dbo.sysjobs;
+Select * From msdb.dbo.sysjobhistory;
 -- EXEC MSDB.dbo.sp_purge_jobhistory;  
 
 go
@@ -23,7 +23,7 @@ Select Top 100000
 From msdb.dbo.sysjobs as j 
   Inner Join msdb.dbo.sysjobhistory as h 
     ON j.job_id = h.job_id 
-Where j.enabled = 1 And j.name = 'DWEmployeeProjectsETL'
+Where j.enabled = 1 And j.name = 'ETL DWEmployeeProjects' --'DWEmployeeProjectsETL'
 Order by JobName, RunDateTime desc
 
 go

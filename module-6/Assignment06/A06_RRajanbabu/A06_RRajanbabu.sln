@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{6E120942-893F-45D9-A7C2-AD13BCAB0694}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\2_Assignment04MetadataWorksheet.xlsx = Documents\2_Assignment04MetadataWorksheet.xlsx
+		Documents\Assignment06.pdf = Documents\Assignment06.pdf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{A9CBB3C3-9E8E-4EF6-BF7E-886B980616C6}"
@@ -16,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A30A
 		Scripts\3_Assignment06DWDatabase.sql = Scripts\3_Assignment06DWDatabase.sql
 		Scripts\4_Assignment06ETL.sql = Scripts\4_Assignment06ETL.sql
 		Scripts\5_Assignment06ETLReportingObjects.sql = Scripts\5_Assignment06ETLReportingObjects.sql
+		Scripts\ETL_DWEmployeeProject_Job.sql = Scripts\ETL_DWEmployeeProject_Job.sql
 	EndProjectSection
 EndProject
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "A06ETLProcess", "A06ETLProcess\A06ETLProcess.dtproj", "{82C52A9B-879C-4836-A5E1-03DB74C77069}"

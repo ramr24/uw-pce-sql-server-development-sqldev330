@@ -154,7 +154,6 @@ Go
 -- 2) FILL the Tables
 --********************************************************************--
 
-
 /****** [dbo].[DimDates] ******/
 Go
 Create or Alter Proc pETLDimDates
@@ -256,6 +255,12 @@ Go
 Create Or Alter View vETLDimAuthors
 As
 	Select 'ADD CODE HERE' as 'TODO'
+	SELECT
+		[AuthorID],
+		[AuthorName],
+		[AuthorCity],
+		[AuthorState]
+	FROM IndependentBookSellers.dbo.Authors;
 Go
 
 Create Or Alter Proc pETLDimAuthors
@@ -277,6 +282,12 @@ Go
 Create Or Alter View vETLDimTitles
 As
 	Select 'ADD CODE HERE' as 'TODO'
+	SELECT
+		[TitleID],
+		[TitleName],
+		[TitleType],
+		[TitleListPrice]
+	FROM IndependentBookSellers.dbo.Titles;
 Go
 
 Create Or Alter Proc pETLDimTitles
@@ -298,6 +309,12 @@ Go
 Create Or Alter View vETLDimStores
 As
 	Select 'ADD CODE HERE' as 'TODO'
+	SELECT
+		[StoreID],
+		[StoreName],
+		[StoreCity],
+		[StoreState]
+	FROM IndependentBookSellers.dbo.Stores;
 Go
 
 Create Or Alter Proc pETLDimStores
@@ -321,6 +338,7 @@ Go
 Create Or Alter View vETLFactTitleAuthors
 As
 	Select 'ADD CODE HERE' as 'TODO'
+
 Go
 
 Create Or Alter Proc pETLFactTitleAuthors

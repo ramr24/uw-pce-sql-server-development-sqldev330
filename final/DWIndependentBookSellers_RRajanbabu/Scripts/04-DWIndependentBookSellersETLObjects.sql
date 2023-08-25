@@ -3,7 +3,7 @@
 -- Desc:This file will drop and create an ETL process Objects for Final assignment. 
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
--- Todo: 08/24/23, Ramkumar Rajanbabu, Started Step 2 of Final
+-- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -71,11 +71,41 @@ Create Or Alter Proc pETLDropFks
 -- Desc:This Sproc drops the DW foreign keys. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks
 --*************************************************************************--
 As 
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+	BEGIN TRY
+		-- DROP CONSTRAINT
+		ALTER TABLE FactTitleAuthors
+			DROP CONSTRAINT fkFactTitleAuthorsToDimAuthors
+
+		ALTER TABLE FactTitleAuthors
+			DROP CONSTRAINT fkFactTitleAuthorsToDimTitles
+
+		ALTER TABLE FactSales
+			DROP CONSTRAINT fkFactSalesToDimDates
+
+		ALTER TABLE FactSales
+			DROP CONSTRAINT fkFactSalesToDimTitles
+
+		ALTER TABLE FactSales
+			DROP CONSTRAINT fkFactSalesToDimStores
+	
+		EXEC pInsETLLog
+			@ETLAction = 'pETLDropFks',
+			@ETLLogMessage = 'Dropped Foreign Keys';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDropFks',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 

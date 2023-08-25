@@ -3,7 +3,7 @@
 -- Desc:This file will drop and create an ETL process Objects for Final assignment. 
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
--- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks
+-- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -115,11 +115,38 @@ Create Or Alter Proc pETLTruncateTables
 -- Desc:This Sproc clears the data from all DW tables. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLTruncateTables
 --*************************************************************************--
 As 
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+	BEGIN TRY
+		-- TRUNCATE TABLE
+		TRUNCATE TABLE FactSales;
+
+		TRUNCATE TABLE FactTitleAuthors;
+
+		TRUNCATE TABLE DimStores;
+
+		TRUNCATE TABLE DimTitles;
+
+		TRUNCATE TABLE DimAuthors;
+
+		TRUNCATE TABLE DimDates;
+
+		EXEC pInsETLLog
+			@ETLAction = 'pETLTruncateTables',
+			@ETLLogMessage = 'Truncated Tables';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+			EXEC pInsETLLog
+				@ETLAction = 'pETLTruncateTables',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 

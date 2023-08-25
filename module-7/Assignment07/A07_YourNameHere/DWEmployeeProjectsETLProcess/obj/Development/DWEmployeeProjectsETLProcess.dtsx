@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/4/2021 1:59:57 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="RRLAPTOP1"
+  DTS:CreatorName="RRLAPTOP1\Admin"
+  DTS:DTSID="{53AF631A-A77F-4DDB-AB20-55FE167AEEE2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{ECC217FE-20B8-41DE-9BE7-7B435CB19244}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.DWEmployeeProjects]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+      DTS:ObjectName="localhost.DWEmployeeProjects">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=DWEmployeeProjects;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Dimension Tables Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DA7A0AE6-E1A9-4BC6-99E4-54C5831CE9F5}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Dimension Tables Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Dimension Tables Sequence Container\Fill DimDates Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{518AF2EB-293A-4A4B-BAEE-B38D46513928}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fill DimDates Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLDimDates;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Dimension Tables Sequence Container\Fill DimEmployees Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{A4521086-23FC-499B-BB14-DC5F2B167E32}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fill DimEmployees Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLDimEmployees;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Load Dimension Tables Sequence Container\Fill DimProjects Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{EFDA7CF8-54FD-456C-B15B-716FA4D96C06}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fill DimProjects Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLDimProjects;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Dimension Tables Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{54A74AA8-09EC-4542-B4E1-76022B494350}"
+          DTS:From="Package\Load Dimension Tables Sequence Container\Fill DimEmployees Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Load Dimension Tables Sequence Container\Fill DimProjects Execute SQL Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Load Dimension Tables Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{5EAA6B7E-4DEF-4B56-A601-5D3E9ACFE38B}"
+          DTS:From="Package\Load Dimension Tables Sequence Container\Fill DimProjects Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Load Dimension Tables Sequence Container\Fill DimDates Execute SQL Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Load Fact Tables Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{43F8BF85-F94D-4A4B-88EF-90145FE0F92E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Fact Tables Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Load Fact Tables Sequence Container\Fill FactEmployeeProjectHours Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1DF7E70C-E2D9-4220-80F0-DA8B77F1FF71}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Fill FactEmployeeProjectHours Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLFactEmployeeProjectHours;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Post-Load Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E972EC4A-CB35-4480-90E6-239E18A0A0A0}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Post-Load Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Post-Load Sequence Container\Replace FKs Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{72D4BF30-5C54-4496-9B96-0118800743E8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Replace FKs Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLReplaceFks;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Pre-load Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{969527CD-CE37-4EBE-87F8-4BDC4DDAC72D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Pre-load Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Pre-load Sequence Container\Clear Tables Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B2E7A33A-5B18-48C0-9DA5-83D6BDD24624}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Clear Tables Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLTruncateTables;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Pre-load Sequence Container\Drop Fks Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{679FD5B6-77AE-491D-AD9C-B636F656F689}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Drop Fks Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9DCC152A-EB5E-4C7F-8407-C1FE5C36251F}"
+              SQLTask:SqlStatementSource="Exec pETLDropFks;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Pre-load Sequence Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0B6D3454-A1F9-4E11-8BB3-05889E682FB6}"
+          DTS:From="Package\Pre-load Sequence Container\Drop Fks Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\Pre-load Sequence Container\Clear Tables Execute SQL Task" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{915D0540-CC23-4A94-A345-D4AF2845139D}"
+      DTS:From="Package\Pre-load Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load Dimension Tables Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8237A5E4-9751-4AB7-A68B-22E11CB4F97C}"
+      DTS:From="Package\Load Dimension Tables Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Load Fact Tables Sequence Container" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{A37A0E0B-EC0C-42D5-95D3-9DFB7B39F733}"
+      DTS:From="Package\Load Fact Tables Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Post-Load Sequence Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Pre-load Sequence Container\Drop Fks Execute SQL Task"
+          TopLeft="33.8571428206502,5.50000000000007" />
+        <NodeLayout
+          Size="224,41.6"
+          Id="Package\Pre-load Sequence Container\Clear Tables Execute SQL Task"
+          TopLeft="28,68.8647053461176" />
+        <EdgeLayout
+          Id="Package\Pre-load Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="33.8571428206502,26.3000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-5.85714282065024,63.3647053461176"
+              Start="0,0"
+              End="-13.3571428206502,63.3647053461176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-24.3571428206502,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-24.3571428206502,0"
+                    Point2="-28.3571428206502,0"
+                    Point3="-28.3571428206502,4" />
+                  <mssgle:LineSegment
+                    End="-28.3571428206502,59.3647053461176" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.3571428206502,59.3647053461176"
+                    Point2="-28.3571428206502,63.3647053461176"
+                    Point3="-24.3571428206502,63.3647053461176" />
+                  <mssgle:LineSegment
+                    End="-13.3571428206502,63.3647053461176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="257.6,150.4"
+          Size="257.6,193.6"
+          Id="Package\Pre-load Sequence Container"
+          TopLeft="30.7142862373469,68.8235303769888" />
+        <NodeLayout
+          Size="251.2,41.6"
+          Id="Package\Load Dimension Tables Sequence Container\Fill DimEmployees Execute SQL Task"
+          TopLeft="23.7428571793499,5.50000000000007" />
+        <NodeLayout
+          Size="238.4,41.6"
+          Id="Package\Load Dimension Tables Sequence Container\Fill DimProjects Execute SQL Task"
+          TopLeft="28,63.511764094574" />
+        <EdgeLayout
+          Id="Package\Load Dimension Tables Sequence Container.PrecedenceConstraints[Constraint]"
+          TopLeft="274.94285717935,26.3000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.54285717934988,52.4117640945739"
+              Start="0,0"
+              End="-1.04285717934988,52.4117640945739">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,48.4117640945739" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,48.4117640945739"
+                    Point2="22.5,52.4117640945739"
+                    Point3="18.5,52.4117640945739" />
+                  <mssgle:LineSegment
+                    End="-1.04285717934988,52.4117640945739" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="228,41.6"
+          Id="Package\Load Dimension Tables Sequence Container\Fill DimDates Execute SQL Task"
+          TopLeft="33.2000000000001,122.288234082226" />
+        <EdgeLayout
+          Id="Package\Load Dimension Tables Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="28,84.311764094574">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="5.20000000000012,58.7764699876517"
+              Start="0,0"
+              End="-2.29999999999988,58.7764699876517">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-18.5,0"
+                    Point2="-22.5,0"
+                    Point3="-22.5,4" />
+                  <mssgle:LineSegment
+                    End="-22.5,54.7764699876517" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-22.5,54.7764699876517"
+                    Point2="-22.5,58.7764699876517"
+                    Point3="-18.5,58.7764699876517" />
+                  <mssgle:LineSegment
+                    End="-2.29999999999988,58.7764699876517" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="302.4,183.2"
+          Size="302.4,226.4"
+          Id="Package\Load Dimension Tables Sequence Container"
+          TopLeft="329.285719893417,65.0000009116006" />
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\Post-Load Sequence Container\Replace FKs Execute SQL Task"
+          TopLeft="5.5,5.50000000000007" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="233.6,73.6"
+          Size="233.6,116.8"
+          Id="Package\Post-Load Sequence Container"
+          TopLeft="405.000006897109,338.000004740323" />
+        <NodeLayout
+          Size="308,41.6"
+          Id="Package\Load Fact Tables Sequence Container\Fill FactEmployeeProjectHours Execute SQL Task"
+          TopLeft="5.5,5.50000000000007" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="319.2,75.2"
+          Size="319.2,118.4"
+          Id="Package\Load Fact Tables Sequence Container"
+          TopLeft="34.2857148695966,337.235298847245" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="288.314286237347,165.623530376989">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="40.9714336560697,12.5764705346118"
+              Start="0,0"
+              End="33.4714336560697,12.5764705346118">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="16.4857168280349,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.4857168280349,0"
+                    Point2="20.4857168280349,0"
+                    Point3="20.4857168280349,4" />
+                  <mssgle:LineSegment
+                    End="20.4857168280349,8.57647053461176" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20.4857168280349,8.57647053461176"
+                    Point2="20.4857168280349,12.5764705346118"
+                    Point3="24.4857168280349,12.5764705346118" />
+                  <mssgle:LineSegment
+                    End="33.4714336560697,12.5764705346118" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="480.485719893417,291.400000911601">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-286.60000502382,45.8352979356443"
+              Start="0,0"
+              End="-286.60000502382,38.3352979356443">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.9176489678222" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.9176489678222"
+                    Point2="0,22.9176489678222"
+                    Point3="-4,22.9176489678222" />
+                  <mssgle:LineSegment
+                    End="-282.60000502382,22.9176489678222" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-282.60000502382,22.9176489678222"
+                    Point2="-286.60000502382,22.9176489678222"
+                    Point3="-286.60000502382,26.9176489678222" />
+                  <mssgle:LineSegment
+                    End="-286.60000502382,38.3352979356443" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="353.485714869597,396.417651793784">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51.5142920275123,0"
+              Start="0,0"
+              End="44.0142920275123,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.0142920275123,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

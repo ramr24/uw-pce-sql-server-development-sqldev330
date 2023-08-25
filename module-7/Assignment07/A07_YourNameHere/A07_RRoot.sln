@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{6E120942-893F-45D9-A7C2-AD13BCAB0694}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\2_Assignment07MetadataWorksheet.xlsx = Documents\2_Assignment07MetadataWorksheet.xlsx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{A9CBB3C3-9E8E-4EF6-BF7E-886B980616C6}"
+	ProjectSection(SolutionItems) = preProject
+		Reports\DimEmployeesETLReport.pdf = Reports\DimEmployeesETLReport.pdf
+		Reports\DimProjectsETLReport.pdf = Reports\DimProjectsETLReport.pdf
+		Reports\FactEmployeeProjectHours.pdf = Reports\FactEmployeeProjectHours.pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A30A3199-5F64-4B57-858D-A54FF88F6E4C}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\1_Assignment07SourceDatabase.sql = Scripts\1_Assignment07SourceDatabase.sql
+		Scripts\3_Assignment07DWDatabase.sql = Scripts\3_Assignment07DWDatabase.sql
+		Scripts\4_Assignment07ETLObjects.sql = Scripts\4_Assignment07ETLObjects.sql
+		Scripts\5_Assignment07ETLReportingObjects.sql = Scripts\5_Assignment07ETLReportingObjects.sql
+		Scripts\DWEmployeeProjectsBackupMaintenance_YourNameHere.sql = Scripts\DWEmployeeProjectsBackupMaintenance_YourNameHere.sql
+		Scripts\DWEmployeeProjectsIndexMaintenance_YourNameHere.sql = Scripts\DWEmployeeProjectsIndexMaintenance_YourNameHere.sql
+	EndProjectSection
+EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "DWEmployeeProjectsReports", "DWEmployeeProjectsReports\DWEmployeeProjectsReports.rptproj", "{872DEDE5-0A1D-4499-8104-44FDC7F68978}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DWEmployeeProjectsETLProcess", "DWEmployeeProjectsETLProcess\DWEmployeeProjectsETLProcess.dtproj", "{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Development|Default = Development|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Debug|Default.ActiveCfg = Debug
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Debug|Default.Build.0 = Debug
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Debug|Default.Deploy.0 = Debug
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.DebugLocal|Default.Build.0 = DebugLocal
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.DebugLocal|Default.Deploy.0 = DebugLocal
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Development|Default.ActiveCfg = 
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Development|Default.Build.0 = 
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Development|Default.Deploy.0 = 
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Release|Default.ActiveCfg = Release
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Release|Default.Build.0 = Release
+		{872DEDE5-0A1D-4499-8104-44FDC7F68978}.Release|Default.Deploy.0 = Release
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.Debug|Default.ActiveCfg = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.Debug|Default.Build.0 = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.DebugLocal|Default.ActiveCfg = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.DebugLocal|Default.Build.0 = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.Development|Default.ActiveCfg = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.Development|Default.Build.0 = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.Release|Default.ActiveCfg = Development
+		{A24FA78D-A5B9-428A-AC9F-D0538FD2BBF7}.Release|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44378DDE-13F1-4CA5-BF99-F515F4D109BE}
+	EndGlobalSection
+EndGlobal

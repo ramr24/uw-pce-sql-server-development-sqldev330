@@ -3,7 +3,7 @@
 -- Desc:This file will drop and create an ETL process Objects for Final assignment. 
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 08/24/23, Ramkumar Rajanbabu, Started Step 2 of Final
 --*************************************************************************--
 
 Use DWIndependentBookSellers;

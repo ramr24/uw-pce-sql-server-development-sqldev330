@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A28565A9-6EAB-48EA-8B75-2AC9EE3D9B63}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\01-DWIndependentBookSellersSourceDB.sql = Scripts\01-DWIndependentBookSellersSourceDB.sql
+		Scripts\03-DWIndependentBookSellersDestinationDB.sql = Scripts\03-DWIndependentBookSellersDestinationDB.sql
+		Scripts\04-DWIndependentBookSellersETLObjects.sql = Scripts\04-DWIndependentBookSellersETLObjects.sql
+		Scripts\05-DWIndependentBookSellersMaintObjects.sql = Scripts\05-DWIndependentBookSellersMaintObjects.sql
+		Scripts\06-DWIndependentBookSellersETLReportingObjects.sql = Scripts\06-DWIndependentBookSellersETLReportingObjects.sql
+		Scripts\07-DWIndependentBookSellersMaintReportingObjects.sql = Scripts\07-DWIndependentBookSellersMaintReportingObjects.sql
+		Scripts\DWIndependentBookSellersETLJob.sql = Scripts\DWIndependentBookSellersETLJob.sql
+		Scripts\DWIndependentBookSellersMaintJob.sql = Scripts\DWIndependentBookSellersMaintJob.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{6F05B11C-26F9-49B9-AACA-58526C43A5C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{1ED74910-3F4E-42B3-92A6-951F20EEF025}"
+	ProjectSection(SolutionItems) = preProject
+		Documents\02-DWIndependentBookSellersMetadataWorksheet.xlsx = Documents\02-DWIndependentBookSellersMetadataWorksheet.xlsx
+		Documents\DWIndependentBookSellersAdminManual.docx = Documents\DWIndependentBookSellersAdminManual.docx
+		Documents\FinalAssignment.docx = Documents\FinalAssignment.docx
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CC8277F-18C7-4B16-92A6-A6889BD6D4FC}
+	EndGlobalSection
+EndGlobal

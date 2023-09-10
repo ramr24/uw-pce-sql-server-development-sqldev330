@@ -4,6 +4,7 @@
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -254,12 +255,11 @@ Go
 Go
 Create Or Alter View vETLDimAuthors
 As
-	Select 'ADD CODE HERE' as 'TODO'
 	SELECT
-		[AuthorID],
-		[AuthorName],
-		[AuthorCity],
-		[AuthorState]
+		[AuthorID] = au_id,
+		[AuthorName] = CAST((au_lname + ' ' + au_fname) AS NVARCHAR(100)),
+		[AuthorCity] = CAST(city AS NVARCHAR(100)),
+		[AuthorState] = CAST(state AS NVARCHAR(2))
 	FROM IndependentBookSellers.dbo.Authors;
 Go
 

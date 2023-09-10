@@ -5,7 +5,7 @@
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
 -- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, 
--- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores
+-- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores, vETLFactTitleAuthors
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -422,8 +422,15 @@ Go
 Go
 Create Or Alter View vETLFactTitleAuthors
 As
-	Select 'ADD CODE HERE' as 'TODO'
-
+	SELECT
+		[AuthorKey] = da.AuthorKey,
+		[TitleKey] = dt.TitleKey,
+		[AuthorOrder] = CAST(ta.au_ord AS INT)
+	FROM IndependentBookSellers.dbo.TitleAuthors AS ta
+		JOIN DimAuthors AS da
+			ON ta.au_id = da.AuthorID
+		JOIN DimTitles AS dt
+			ON ta.title_id = dt.TitleID;
 Go
 
 Create Or Alter Proc pETLFactTitleAuthors

@@ -5,7 +5,8 @@
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
 -- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, 
--- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores, vETLFactTitleAuthors
+-- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores, vETLFactTitleAuthors,
+-- pETLFactTitleAuthors
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -438,15 +439,42 @@ Create Or Alter Proc pETLFactTitleAuthors
 -- Desc:This Sproc fills the FactTitleAuthors table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pETLFactTitleAuthors
 --*************************************************************************--
 As 
 Begin
-	Select 'ADD CODE HERE' as 'TODO' 
+	DECLARE @RC INT = 0;
+		DECLARE @Message VARCHAR(1000);
+	BEGIN TRY
+		BEGIN TRAN;
+			-- INSERT INTO SELECT
+			INSERT INTO FactTitleAuthors
+			(AuthorKey, TitleKey, AuthorOrder)
+			SELECT
+				[AuthorKey],
+				[TitleKey],
+				[AuthorOrder]
+			FROM vETLFactTitleAuthors;
+
+			SET @Message = 'Filled FactTitleAuthors (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
+			COMMIT TRAN;
+			EXEC pInsETLLog
+				@ETLAction = 'pETLFactTitleAuthors',
+				@ETLLogMessage = @Message;
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 ROLLBACK;
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+			EXEC pInsETLLog
+				@ETLAction = 'pETLFactTitleAuthors',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Select * From FactTitleAuthors;
-
 
 /****** [dbo].[FactSales] ******/
 

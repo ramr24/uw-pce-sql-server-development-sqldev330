@@ -4,7 +4,8 @@
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
--- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, vETLDimTitles, pETLDimTitles
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, 
+-- vETLDimTitles, pETLDimTitles, vETLDimStores
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -366,12 +367,11 @@ Go
 Go
 Create Or Alter View vETLDimStores
 As
-	Select 'ADD CODE HERE' as 'TODO'
 	SELECT
-		[StoreID],
-		[StoreName],
-		[StoreCity],
-		[StoreState]
+		[StoreID] = stor_id,
+		[StoreName] = CAST(stor_name AS NVARCHAR(100)),
+		[StoreCity] = CAST(city AS NVARCHAR(100)),
+		[StoreState] = CAST(state AS NVARCHAR(2))
 	FROM IndependentBookSellers.dbo.Stores;
 Go
 

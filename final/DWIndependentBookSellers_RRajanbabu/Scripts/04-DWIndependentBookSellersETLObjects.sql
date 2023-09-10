@@ -6,7 +6,7 @@
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
 -- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, 
 -- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores, vETLFactTitleAuthors,
--- pETLFactTitleAuthors, vETLFactSales, pETLFactSales
+-- pETLFactTitleAuthors, vETLFactSales, pETLFactSales, pETLReplaceFks
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -544,7 +544,6 @@ End
 Go
 -- Select * From FactSales;
 
-
 --********************************************************************--
 -- 3) Re-Create the Foreign Key CONSTRAINTS
 --********************************************************************--
@@ -554,11 +553,49 @@ Create Or Alter Proc pETLReplaceFks
 -- Desc:This Sproc replaces the DW foreign keys. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Added code to replace FKs
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pETLReplaceFks
 --*************************************************************************--
 As 
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+		DECLARE @Message VARCHAR(1000);
+	BEGIN TRY
+		BEGIN TRAN;
+			ALTER TABLE FactSales
+				ADD CONSTRAINT fkFactSalesToDimStores
+					FOREIGN KEY (StoreKey) REFERENCES DimStores(StoreKey);
+
+			ALTER TABLE FactSales
+				ADD CONSTRAINT fkFactSalesToDimTitles
+					FOREIGN KEY (TitleKey) REFERENCES DimTitles(TitleKey);
+
+			ALTER TABLE FactSales
+				ADD CONSTRAINT fkFactSalesToDimDates
+					FOREIGN KEY (OrderDateKey) REFERENCES DimDates(DateKey);
+
+			ALTER TABLE FactTitleAuthors
+				ADD CONSTRAINT fkFactTitleAuthorsToDimTitles
+					FOREIGN KEY (TitleKey) REFERENCES DimTitles(TitleKey);
+			
+			ALTER TABLE FactTitleAuthors
+				ADD CONSTRAINT fkFactTitleAuthorsToDimAuthors
+					FOREIGN KEY (AuthorKey) REFERENCES DimAuthors(AuthorKey);
+
+			COMMIT TRAN;
+			EXEC pInsETLLog
+				@ETLAction = 'pETLReplaceFks',
+				@ETLLogMessage = 'Replaced Foreign Keys';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 ROLLBACK;
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+			EXEC pInsETLLog
+				@ETLAction = 'pETLReplaceFks',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 --********************************************************************--
@@ -571,7 +608,7 @@ Exec pETLDimAuthors;
 Exec pETLDimTitles;
 Exec pETLDimStores;
 Exec pETLFactTitleAuthors;
-Exec pETLFactSales;
+Exec pETLFactSales; 
 Exec pETLReplaceFks;
 go
 

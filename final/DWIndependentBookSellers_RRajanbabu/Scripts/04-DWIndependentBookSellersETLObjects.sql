@@ -5,7 +5,7 @@
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
 -- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, 
--- vETLDimTitles, pETLDimTitles, vETLDimStores
+-- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -380,16 +380,43 @@ Create Or Alter Proc pETLDimStores
 -- Desc:This Sproc fills the DimStores table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pETLDimStores
 --*************************************************************************--
 As 
 Begin
-	Select 'ADD CODE HERE' as 'TODO' 
+	DECLARE @RC INT = 0;
+		DECLARE @Message VARCHAR(1000);
+	BEGIN TRY
+		BEGIN TRAN;
+			-- INSERT INTO SELECT
+			INSERT INTO DimStores
+			(StoreID, StoreName, StoreCity, StoreState)
+			SELECT
+				[StoreID],
+				[StoreName],
+				[StoreCity],
+				[StoreState]
+			FROM vETLDimStores;
+
+			SET @Message = 'Filled DimStores (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
+			COMMIT TRAN;
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDimStores',
+				@ETLLogMessage = @Message;
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 ROLLBACK;
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDimStores',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Select * From DimStores
-
-
 
 /****** [dbo].[FactTitleAuthors] ******/
 Go

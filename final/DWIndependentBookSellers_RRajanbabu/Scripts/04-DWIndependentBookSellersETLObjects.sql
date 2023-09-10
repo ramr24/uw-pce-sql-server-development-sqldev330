@@ -4,7 +4,7 @@
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
--- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, Completed pETLDimAuthors
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, vETLDimTitles
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -310,12 +310,11 @@ Go
 Go
 Create Or Alter View vETLDimTitles
 As
-	Select 'ADD CODE HERE' as 'TODO'
 	SELECT
-		[TitleID],
-		[TitleName],
-		[TitleType],
-		[TitleListPrice]
+		[TitleID] = title_id,
+		[TitleName] = CAST([title] AS NVARCHAR(100)),
+		[TitleType] = CAST([type] AS NVARCHAR(100)),
+		[TitleListPrice] = CAST([price] AS DECIMAL)
 	FROM IndependentBookSellers.dbo.Titles;
 Go
 

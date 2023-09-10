@@ -4,7 +4,7 @@
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
--- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, vETLDimTitles
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, vETLDimTitles, pETLDimTitles
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -315,7 +315,8 @@ As
 		[TitleName] = CAST([title] AS NVARCHAR(100)),
 		[TitleType] = CAST([type] AS NVARCHAR(100)),
 		[TitleListPrice] = CAST([price] AS DECIMAL)
-	FROM IndependentBookSellers.dbo.Titles;
+	FROM IndependentBookSellers.dbo.Titles
+	WHERE CAST([price] AS DECIMAL) IS NOT NULL;
 Go
 
 Create Or Alter Proc pETLDimTitles
@@ -323,11 +324,40 @@ Create Or Alter Proc pETLDimTitles
 -- Desc:This Sproc fills the DimTitles table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pETLDimTitles
 --*************************************************************************--
 As 
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+		DECLARE @Message VARCHAR(1000);
+	BEGIN TRY
+		BEGIN TRAN;
+			-- INSERT INTO SELECT
+			INSERT INTO DimTitles
+			(TitleID, TitleName, TitleType, TitleListPrice)
+			SELECT
+				[TitleID],
+				[TitleName],
+				[TitleType],
+				[TitleListPrice]
+			FROM vETLDimTitles;
+
+			SET @Message = 'Filled DimTitles (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
+			COMMIT TRAN;
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDimTitles',
+				@ETLLogMessage = @Message;
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 ROLLBACK;
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDimTitles',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Select * From DimTitles

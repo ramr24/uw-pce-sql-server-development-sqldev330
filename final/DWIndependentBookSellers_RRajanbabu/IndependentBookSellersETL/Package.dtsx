@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/10/2023 2:53:48 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="RCA-DELL-PC"
+  DTS:CreatorName="RCA-DELL-PC\User"
+  DTS:DTSID="{2DDF693C-8302-48D5-8809-673C927188EF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{835F3EE8-BA87-42E0-B174-B724DF8532BD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>

@@ -24,7 +24,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\FinalAssignment.docx = Documents\FinalAssignment.docx
 	EndProjectSection
 EndProject
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "IndependentBookSellersETL", "IndependentBookSellersETL\IndependentBookSellersETL.dtproj", "{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Development|Default.ActiveCfg = Development
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Development|Default.Build.0 = Development
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

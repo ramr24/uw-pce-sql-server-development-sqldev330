@@ -6,7 +6,7 @@
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
 -- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, pETLDimAuthors, 
 -- vETLDimTitles, pETLDimTitles, vETLDimStores, pETLDimStores, vETLFactTitleAuthors,
--- pETLFactTitleAuthors
+-- pETLFactTitleAuthors, vETLFactSales, pETLFactSales
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -481,7 +481,22 @@ Go
 Go
 Create Or Alter View vETLFactSales
 As
-	Select 'ADD CODE HERE' as 'TODO'
+	SELECT
+		[OrderNumber] = sd.ord_num,
+		[OrderDateKey] = dd.DateKey,
+		[StoreKey] = ds.StoreKey,
+		[TitleKey] = dt.TitleKey,
+		[SalesQty] = sd.qty,
+		[SalesPrice] = CAST(sd.price AS DECIMAL)
+	FROM IndependentBookSellers.dbo.SalesDetails AS sd
+		JOIN IndependentBookSellers.dbo.SalesHeaders AS sh
+			ON sd.ord_num = sh.ord_num
+		JOIN DimDates AS dd
+			ON CAST(CONVERT(NVARCHAR(50), sh.ord_date, 112) AS INT) = dd.DateKey
+		JOIN DimTitles AS dt
+			ON sd.title_id = dt.TitleID
+		JOIN DimStores AS ds
+			ON sh.stor_id = ds.StoreID
 Go
 
 Create Or Alter Proc pETLFactSales
@@ -489,11 +504,42 @@ Create Or Alter Proc pETLFactSales
 -- Desc:This Sproc fills the FactSales table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pETLFactSales
 --*************************************************************************--
 As 
-Begin 
-	Select 'ADD CODE HERE' as 'TODO'
+Begin
+	DECLARE @RC INT = 0;
+		DECLARE @Message VARCHAR(1000);
+	BEGIN TRY
+		BEGIN TRAN;
+			-- INSERT INTO SELECT
+			INSERT INTO FactSales
+			(OrderNumber, OrderDateKey, StoreKey, TitleKey, SalesQty, SalesPrice)
+			SELECT
+				[OrderNumber],
+				[OrderDateKey],
+				[StoreKey],
+				[TitleKey],
+				[SalesQty],
+				[SalesPrice]
+			FROM vETLFactSales;
+
+			SET @Message = 'Filled FactSales (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
+			COMMIT TRAN;
+			EXEC pInsETLLog
+				@ETLAction = 'pETLFactSales',
+				@ETLLogMessage = @Message;
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 ROLLBACK;
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+			EXEC pInsETLLog
+				@ETLAction = 'pETLFactSales',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Select * From FactSales;

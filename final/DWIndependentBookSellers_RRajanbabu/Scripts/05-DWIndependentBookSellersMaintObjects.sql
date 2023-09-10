@@ -4,8 +4,8 @@
 -- Desc: This file creates several Final DB Maintenance objects
 -- Change Log: When,Who,What
 -- 2020-02-07,RRoot,Created File
--- Todo: 09/10/23, Ramkumar Rajanbabu, Started on Step 4
--- Incomplete pMaintIndexes, pMaintDBBackup, pMaintRestore, 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes
+-- Incomplete pMaintDBBackup, pMaintRestore, 
 -- pMaintValidateDimAuthorsRestore, pMaintValidateDimTitlesRestore, 
 -- pMaintValidateDimStoresRestore, pMaintValidateFactTitleAuthorsRestore, pMaintValidateFactSalesRestore
 --**************************************************************************--
@@ -149,11 +149,40 @@ Create or Alter Proc pMaintIndexes
 -- Desc:This Sproc drops and creates FK column indexes. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes
 --*************************************************************************--
 As
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 1;
+	BEGIN TRY
+		BEGIN TRY DROP INDEX FactTitleAuthors.nciDimAuthorsFK END TRY BEGIN CATCH END CATCH
+		CREATE NONCLUSTERED INDEX nciDimAuthorsFK ON FactTitleAuthors(AuthorKey);
+
+		BEGIN TRY DROP INDEX FactTitleAuthors.nciDimTitlesFK END TRY BEGIN CATCH END CATCH
+		CREATE NONCLUSTERED INDEX nciDimTitlesFK ON FactTitleAuthors(TitleKey);
+
+		BEGIN TRY DROP INDEX FactSales.nciDimDatesFK END TRY BEGIN CATCH END CATCH
+		CREATE NONCLUSTERED INDEX nciDimDatesFK ON FactSales(OrderDateKey);
+
+		BEGIN TRY DROP INDEX FactSales.nciDimTitlesFK END TRY BEGIN CATCH END CATCH
+		CREATE NONCLUSTERED INDEX nciDimTitlesFK ON FactSales(TitleKey);
+
+		BEGIN TRY DROP INDEX FactSales.nciDimStoresFK END TRY BEGIN CATCH END CATCH
+		CREATE NONCLUSTERED INDEX nciDimStoresFK ON FactSales(StoreKey);
+
+		EXEC pInsMaintLog
+			@MaintAction = 'pMaintIndexes',
+			@MaintLogMessage = 'Indexes Recreated';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+			EXEC pInsMaintLog
+				@MaintAction = 'pMaintIndexes',
+				@MaintLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Exec pMaintIndexes; Select * From vMaintLog

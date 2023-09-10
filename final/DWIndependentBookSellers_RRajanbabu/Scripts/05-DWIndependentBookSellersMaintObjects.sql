@@ -4,8 +4,8 @@
 -- Desc: This file creates several Final DB Maintenance objects
 -- Change Log: When,Who,What
 -- 2020-02-07,RRoot,Created File
--- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes
--- Incomplete pMaintDBBackup, pMaintRestore, 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes, pMaintDBBackup
+-- Incomplete pMaintRestore, 
 -- pMaintValidateDimAuthorsRestore, pMaintValidateDimTitlesRestore, 
 -- pMaintValidateDimStoresRestore, pMaintValidateFactTitleAuthorsRestore, pMaintValidateFactSalesRestore
 --**************************************************************************--
@@ -193,11 +193,30 @@ Create or Alter Proc pMaintDBBackup
 -- Desc:This Sproc does a full backup of the database. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintDBBackup
 --*************************************************************************--
 As
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	--Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 1;
+	BEGIN TRY
+		BACKUP DATABASE [DWIndependentBookSellers]
+			TO DISK = N'C:\Users\User\Documents\github\uw-pce-sql-server-development-sqldev330\_SQL330\DWIndependentBookSellers.bak'
+			WITH INIT;
+
+		EXEC pInsMaintLog
+			@MaintAction = 'pMaintDBBackup',
+			@MaintLogMessage = 'Created DB Backup';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+			EXEC pInsMaintLog
+				@MaintAction = 'pMaintDBBackup',
+				@MaintLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 

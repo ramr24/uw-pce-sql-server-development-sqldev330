@@ -4,7 +4,7 @@
 -- Change Log: When,Who,What
 -- 2020-02-01,RRoot,Created File
 -- Todo: 08/24/23, Ramkumar Rajanbabu, Completed pETLDropFks, pETLTruncateTables
--- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed vETLDimAuthors, Completed pETLDimAuthors
 --*************************************************************************--
 
 Use DWIndependentBookSellers;
@@ -268,11 +268,40 @@ Create Or Alter Proc pETLDimAuthors
 -- Desc:This Sproc fills the DimAuthors table. 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pETLDimAuthors
 --*************************************************************************--
 As 
 Begin 
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+		DECLARE @Message VARCHAR(1000);
+	BEGIN TRY
+		BEGIN TRAN;
+			-- INSERT INTO SELECT
+			INSERT INTO DimAuthors
+			(AuthorID, AuthorName, AuthorCity, AuthorState)
+			SELECT
+				[AuthorID],
+				[AuthorName],
+				[AuthorCity],
+				[AuthorState]
+			FROM vETLDimAuthors;
+
+			SET @Message = 'Filled DimAuthors (' + CAST(@@ROWCOUNT AS VARCHAR(100)) + ' rows)';
+			COMMIT TRAN;
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDimAuthors',
+				@ETLLogMessage = @Message;
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		IF @@TRANCOUNT > 0 ROLLBACK;
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message();
+			EXEC pInsETLLog
+				@ETLAction = 'pETLDimAuthors',
+				@ETLLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Select * From DimAuthors

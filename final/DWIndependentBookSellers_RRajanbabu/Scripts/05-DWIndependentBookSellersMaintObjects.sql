@@ -4,8 +4,9 @@
 -- Desc: This file creates several Final DB Maintenance objects
 -- Change Log: When,Who,What
 -- 2020-02-07,RRoot,Created File
--- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes, pMaintDBBackup, pMaintRestore
--- Incomplete pMaintValidateDimAuthorsRestore, pMaintValidateDimTitlesRestore, 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes, pMaintDBBackup, pMaintRestore,
+-- pMaintValidateDimAuthorsRestore, 
+-- Incomplete pMaintValidateDimTitlesRestore, 
 -- pMaintValidateDimStoresRestore, pMaintValidateFactTitleAuthorsRestore, pMaintValidateFactSalesRestore
 --**************************************************************************--
 Use DWIndependentBookSellers;
@@ -333,11 +334,62 @@ Create or Alter Proc pMaintValidateDimAuthorsRestore
 -- Desc:This Sproc validates DimAuthors in the restore database . 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintValidateDimAuthorsRestore
 --*************************************************************************--
 As
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+	BEGIN TRY
+		DECLARE @CurrentCount INT, @RestoredCount INT;
+		DECLARE @CurrentDateTime DateTime = GetDate()
+		
+		-- Test Row Counts DimDates
+		SELECT @CurrentCount = COUNT(*) FROM [DWIndependentBookSellers].[dbo].[DimAuthors];
+		SELECT @RestoredCount = COUNT(*) FROM [DWIndependentBookSellersRestored].[dbo].[DimAuthors];
+			IF (@CurrentCount = @RestoredCount)
+				EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateDimAuthorsRestore',
+					 @ValidationStatus = 'Success',
+					 @ValidationMessage = 'DimAuthors Row Count Test'
+			ELSE
+				EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateDimAuthorsRestore',
+					 @ValidationStatus = 'Failed',
+					 @ValidationMessage = 'DimAuthors Row Count Test'
+		-- Compare Data
+		DECLARE @DuplicateCount INT
+		SELECT @DuplicateCount = Count(*)
+			FROM
+			(SELECT * FROM [DWIndependentBookSellers].[dbo].[DimAuthors]
+             EXCEPT
+             SELECT * FROM [DWIndependentBookSellersRestored].[dbo].[DimAuthors]) AS Results
+		IF @DuplicateCount = 0
+			EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateDimAuthorsRestore',
+					 @ValidationStatus = 'Success',
+					 @ValidationMessage = 'DimAuthors Duplicate Test'
+		ELSE
+			EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateDimAuthorsRestore',
+					 @ValidationStatus = 'Failed',
+					 @ValidationMessage = 'DimAuthors Duplicate Test'
+		EXEC pInsMaintLog
+			@MaintAction = 'pMaintValidateDimAuthorsRestore',
+			@MaintLogMessage = 'DimAuthors Validated. Check Validation Log!';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+			EXEC pInsMaintLog
+				@MaintAction = 'pMaintValidateDimAuthorsRestore',
+				@MaintLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 

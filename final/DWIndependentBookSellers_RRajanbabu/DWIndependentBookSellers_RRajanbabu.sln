@@ -26,13 +26,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 EndProject
 Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "IndependentBookSellersETL", "IndependentBookSellersETL\IndependentBookSellersETL.dtproj", "{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "DWIBSAdminReports", "DWIBSAdminReports\DWIBSAdminReports.rptproj", "{457A5394-E64E-4508-9D3F-6839F9291617}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
 		Development|Default = Development|Default
+		Release|Default = Release|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Debug|Default.ActiveCfg = Development
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Debug|Default.Build.0 = Development
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.DebugLocal|Default.ActiveCfg = Development
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.DebugLocal|Default.Build.0 = Development
 		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Development|Default.ActiveCfg = Development
 		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Development|Default.Build.0 = Development
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Release|Default.ActiveCfg = Development
+		{3BB678E3-CB7F-4D96-AF81-236EBD5EC3E2}.Release|Default.Build.0 = Development
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Debug|Default.ActiveCfg = Debug
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Debug|Default.Build.0 = Debug
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Debug|Default.Deploy.0 = Debug
+		{457A5394-E64E-4508-9D3F-6839F9291617}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{457A5394-E64E-4508-9D3F-6839F9291617}.DebugLocal|Default.Build.0 = DebugLocal
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Development|Default.ActiveCfg = Debug
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Development|Default.Build.0 = Debug
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Development|Default.Deploy.0 = Debug
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Release|Default.ActiveCfg = Release
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Release|Default.Build.0 = Release
+		{457A5394-E64E-4508-9D3F-6839F9291617}.Release|Default.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

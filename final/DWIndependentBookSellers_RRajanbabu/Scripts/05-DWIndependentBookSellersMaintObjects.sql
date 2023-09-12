@@ -7,8 +7,7 @@
 -- Todo: 09/10/23, Ramkumar Rajanbabu, Completed pMaintIndexes, pMaintDBBackup, pMaintRestore,
 -- pMaintValidateDimAuthorsRestore
 -- Todo: 09/11/23, Ramkumar Rajanbabu, Completed pMaintValidateDimTitlesRestore, pMaintValidateDimStoresRestore, 
--- pMaintValidateFactTitleAuthorsRestore, 
--- Incomplete pMaintValidateFactSalesRestore
+-- pMaintValidateFactTitleAuthorsRestore, pMaintValidateFactSalesRestore
 --**************************************************************************--
 Use DWIndependentBookSellers;
 go
@@ -661,7 +660,7 @@ Go
 
 -- Testing Code --
 -------------------------------------------------
-/*
+
 -- Clear tables before test
 Truncate Table MaintLog;
 Select * From vMaintLog;
@@ -684,6 +683,7 @@ go
 Select * From vMaintLog;
 Select * From vValidationLog;
 
+/*
 -- Test Validation
 -- Force a failure
 Update [dbo].[DimTitles] Set [TitleName] = 'ZZZZThe Busy Executive''s Database Guide' Where [TitleId] = 'BU1032';

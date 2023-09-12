@@ -596,14 +596,65 @@ Go
 
 Create or Alter Proc pMaintValidateFactSalesRestore
 --*************************************************************************--
--- Desc:This Sproc validates Dim Authors in the restore database . 
+-- Desc:This Sproc validates FactSales in the restore database . 
 -- Change Log: When,Who,What
 -- 2020-01-01,RRoot,Created Sproc
--- Todo: <Date>,<Name>,Completed code 
+-- Todo: 09/11/23, Ramkumar Rajanbabu, Completed pMaintValidateFactSalesRestore
 --*************************************************************************--
 As
 Begin
-	Select 'ADD CODE HERE' as 'TODO'
+	DECLARE @RC INT = 0;
+	BEGIN TRY
+		DECLARE @CurrentCount INT, @RestoredCount INT;
+		DECLARE @CurrentDateTime DateTime = GetDate()
+		
+		-- Test Row Counts DimDates
+		SELECT @CurrentCount = COUNT(*) FROM [DWIndependentBookSellers].[dbo].[FactSales];
+		SELECT @RestoredCount = COUNT(*) FROM [DWIndependentBookSellersRestored].[dbo].[FactSales];
+			IF (@CurrentCount = @RestoredCount)
+				EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateFactSalesRestore',
+					 @ValidationStatus = 'Success',
+					 @ValidationMessage = 'FactSales Row Count Test'
+			ELSE
+				EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateFactSalesRestore',
+					 @ValidationStatus = 'Failed',
+					 @ValidationMessage = 'FactSales Row Count Test'
+		-- Compare Data
+		DECLARE @DuplicateCount INT
+		SELECT @DuplicateCount = Count(*)
+			FROM
+			(SELECT * FROM [DWIndependentBookSellers].[dbo].[FactSales]
+             EXCEPT
+             SELECT * FROM [DWIndependentBookSellersRestored].[dbo].[FactSales]) AS Results
+		IF @DuplicateCount = 0
+			EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateFactSalesRestore',
+					 @ValidationStatus = 'Success',
+					 @ValidationMessage = 'FactSales Duplicate Test'
+		ELSE
+			EXEC pInsValidationLog
+					 @ValidationDateTime = @CurrentDateTime,
+					 @ValidationObject = 'pMaintValidateFactSalesRestore',
+					 @ValidationStatus = 'Failed',
+					 @ValidationMessage = 'FactSales Duplicate Test'
+		EXEC pInsMaintLog
+			@MaintAction = 'pMaintValidateFactSalesRestore',
+			@MaintLogMessage = 'FactSales Validated. Check Validation Log!';
+		SET @RC = 1;
+	END TRY
+	BEGIN CATCH
+		DECLARE @ErrorMessage NVARCHAR(1000) = Error_Message()
+			EXEC pInsMaintLog
+				@MaintAction = 'pMaintValidateFactSalesRestore',
+				@MaintLogMessage = @ErrorMessage;
+		SET @RC = -1;
+	END CATCH
+	RETURN @RC;
 End
 Go
 -- Exec pMaintValidateFactSalesRestore; Select * From vMaintLog; Select * From vValidationLog

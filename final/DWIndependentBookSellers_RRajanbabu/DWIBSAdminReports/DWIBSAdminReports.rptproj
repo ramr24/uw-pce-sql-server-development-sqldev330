@@ -52,6 +52,7 @@
     <Report Include="DimAuthorsETLReport.rdl" />
     <Report Include="DimStoresETLReport.rdl" />
     <Report Include="DimTitlesETLReport.rdl" />
+    <Report Include="DWIndependentBookSellersETLReport.rdl" />
     <Report Include="FactSalesETLReport.rdl" />
     <Report Include="FactTitleAuthorsETLReport.rdl" />
   </ItemGroup>

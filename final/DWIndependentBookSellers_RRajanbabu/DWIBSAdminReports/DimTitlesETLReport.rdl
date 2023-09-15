@@ -1417,7 +1417,7 @@ FROM   DimTitles</CommandText>
             <Top>2.56597in</Top>
             <Left>6.1389in</Left>
             <Height>0.5in</Height>
-            <Width>5.77305in</Width>
+            <Width>5.77306in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1426,7 +1426,7 @@ FROM   DimTitles</CommandText>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.97917in</Height>
+        <Height>3.19445in</Height>
         <Style />
       </Body>
       <Width>12.20139in</Width>

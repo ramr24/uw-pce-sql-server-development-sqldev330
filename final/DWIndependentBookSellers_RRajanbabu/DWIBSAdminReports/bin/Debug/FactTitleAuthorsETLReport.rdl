@@ -14,32 +14,24 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="vDimAuthorsTopTenDataSet">
+    <DataSet Name="vFactTitleAuthorsTopTenDataSet">
       <Query>
         <DataSourceName>DWIndependentBookSellersDataSource</DataSourceName>
-        <CommandText>SELECT AuthorKey, AuthorID, AuthorName, AuthorCity, AuthorState
-FROM   vDimAuthorsTopTen</CommandText>
+        <CommandText>SELECT AuthorKey, TitleKey, AuthorOrder
+FROM   vFactTitleAuthorsTopTen</CommandText>
       </Query>
       <Fields>
         <Field Name="AuthorKey">
           <DataField>AuthorKey</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="AuthorID">
-          <DataField>AuthorID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="TitleKey">
+          <DataField>TitleKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="AuthorName">
-          <DataField>AuthorName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="AuthorCity">
-          <DataField>AuthorCity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="AuthorState">
-          <DataField>AuthorState</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="AuthorOrder">
+          <DataField>AuthorOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -93,32 +85,24 @@ FROM   ETLLog</CommandText>
         </Field>
       </Fields>
     </DataSet>
-    <DataSet Name="DimAuthorsDataSet">
+    <DataSet Name="FactTitleAuthorsDataSet">
       <Query>
         <DataSourceName>DWIndependentBookSellersDataSource</DataSourceName>
-        <CommandText>SELECT AuthorKey, AuthorID, AuthorName, AuthorCity, AuthorState
-FROM   DimAuthors</CommandText>
+        <CommandText>SELECT AuthorKey, TitleKey, AuthorOrder
+FROM   FactTitleAuthors</CommandText>
       </Query>
       <Fields>
         <Field Name="AuthorKey">
           <DataField>AuthorKey</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="AuthorID">
-          <DataField>AuthorID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="TitleKey">
+          <DataField>TitleKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="AuthorName">
-          <DataField>AuthorName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="AuthorCity">
-          <DataField>AuthorCity</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="AuthorState">
-          <DataField>AuthorState</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="AuthorOrder">
+          <DataField>AuthorOrder</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -908,7 +892,7 @@ FROM   DimAuthors</CommandText>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
             <Top>2.23264in</Top>
-            <Left>5.05556in</Left>
+            <Left>4.56251in</Left>
             <Height>0.26389in</Height>
             <Width>2.28473in</Width>
             <ZIndex>5</ZIndex>
@@ -926,13 +910,13 @@ FROM   DimAuthors</CommandText>
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.81944in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.33556in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.11111in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -941,7 +925,7 @@ FROM   DimAuthors</CommandText>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox15">
+                        <Textbox Name="Textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -959,7 +943,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -976,14 +960,14 @@ FROM   DimAuthors</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox17">
+                        <Textbox Name="Textbox10">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Author ID</Value>
+                                  <Value>Title Key</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -994,7 +978,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1011,14 +995,14 @@ FROM   DimAuthors</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox23">
+                        <Textbox Name="Textbox13">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Author Name</Value>
+                                  <Value>Author Order</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -1029,7 +1013,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1083,14 +1067,14 @@ FROM   DimAuthors</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AuthorID1">
+                        <Textbox Name="TitleKey1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AuthorID.Value</Value>
+                                  <Value>=Fields!TitleKey.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1099,7 +1083,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AuthorID1</rd:DefaultName>
+                          <rd:DefaultName>TitleKey1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1115,14 +1099,14 @@ FROM   DimAuthors</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AuthorName1">
+                        <Textbox Name="AuthorOrder1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AuthorName.Value</Value>
+                                  <Value>=Fields!AuthorOrder.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1131,7 +1115,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AuthorName1</rd:DefaultName>
+                          <rd:DefaultName>AuthorOrder1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1166,11 +1150,11 @@ FROM   DimAuthors</CommandText>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>DimAuthorsDataSet</DataSetName>
+            <DataSetName>FactTitleAuthorsDataSet</DataSetName>
             <Top>2.56597in</Top>
             <Left>0.125in</Left>
             <Height>0.5in</Height>
-            <Width>4.26611in</Width>
+            <Width>3in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1178,17 +1162,17 @@ FROM   DimAuthors</CommandText>
               </Border>
             </Style>
           </Tablix>
-          <Tablix Name="Tablix3">
+          <Tablix Name="Tablix5">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.82861in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.26157in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.76157in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1240,7 +1224,7 @@ FROM   DimAuthors</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Author ID</Value>
+                                  <Value>Title Key</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -1276,7 +1260,7 @@ FROM   DimAuthors</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Author Name</Value>
+                                  <Value>Author Order</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -1342,14 +1326,14 @@ FROM   DimAuthors</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AuthorID">
+                        <Textbox Name="TitleKey">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AuthorID.Value</Value>
+                                  <Value>=Fields!TitleKey.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1358,7 +1342,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AuthorID</rd:DefaultName>
+                          <rd:DefaultName>TitleKey</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1374,14 +1358,14 @@ FROM   DimAuthors</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AuthorName">
+                        <Textbox Name="AuthorOrder">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AuthorName.Value</Value>
+                                  <Value>=Fields!AuthorOrder.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1390,7 +1374,7 @@ FROM   DimAuthors</CommandText>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AuthorName</rd:DefaultName>
+                          <rd:DefaultName>AuthorOrder</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1425,11 +1409,11 @@ FROM   DimAuthors</CommandText>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>vDimAuthorsTopTenDataSet</DataSetName>
+            <DataSetName>vFactTitleAuthorsTopTenDataSet</DataSetName>
             <Top>2.56597in</Top>
-            <Left>5.05556in</Left>
+            <Left>4.56251in</Left>
             <Height>0.5in</Height>
-            <Width>3.85175in</Width>
+            <Width>3in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1438,7 +1422,7 @@ FROM   DimAuthors</CommandText>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.20139in</Height>
+        <Height>3.27778in</Height>
         <Style />
       </Body>
       <Width>12.20139in</Width>
@@ -1457,7 +1441,7 @@ FROM   DimAuthors</CommandText>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>DimAuthors ETL Process</Value>
+                          <Value>FactTitleAuthors ETL Process</Value>
                           <Style>
                             <FontSize>22pt</FontSize>
                             <FontWeight>Bold</FontWeight>

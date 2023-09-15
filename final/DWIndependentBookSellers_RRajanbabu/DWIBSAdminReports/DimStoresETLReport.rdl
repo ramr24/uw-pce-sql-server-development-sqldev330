@@ -1170,7 +1170,7 @@ FROM   DimStores</CommandText>
             <Top>2.56597in</Top>
             <Left>0.125in</Left>
             <Height>0.5in</Height>
-            <Width>4.17583in</Width>
+            <Width>4.17584in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1429,7 +1429,7 @@ FROM   DimStores</CommandText>
             <Top>2.56597in</Top>
             <Left>5.05555in</Left>
             <Height>0.5in</Height>
-            <Width>4.15972in</Width>
+            <Width>4.15971in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1438,7 +1438,7 @@ FROM   DimStores</CommandText>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.97917in</Height>
+        <Height>3.1875in</Height>
         <Style />
       </Body>
       <Width>12.20139in</Width>

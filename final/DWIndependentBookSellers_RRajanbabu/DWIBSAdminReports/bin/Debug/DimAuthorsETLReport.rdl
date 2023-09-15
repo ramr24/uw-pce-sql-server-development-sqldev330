@@ -1429,7 +1429,7 @@ FROM   DimAuthors</CommandText>
             <Top>2.56597in</Top>
             <Left>5.05556in</Left>
             <Height>0.5in</Height>
-            <Width>3.85176in</Width>
+            <Width>3.85175in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1438,7 +1438,7 @@ FROM   DimAuthors</CommandText>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.97917in</Height>
+        <Height>3.20139in</Height>
         <Style />
       </Body>
       <Width>12.20139in</Width>

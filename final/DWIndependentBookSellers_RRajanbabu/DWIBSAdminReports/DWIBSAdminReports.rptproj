@@ -51,6 +51,7 @@
   <ItemGroup>
     <Report Include="DimAuthorsETLReport.rdl" />
     <Report Include="DimStoresETLReport.rdl" />
+    <Report Include="DimTitlesETLReport.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>

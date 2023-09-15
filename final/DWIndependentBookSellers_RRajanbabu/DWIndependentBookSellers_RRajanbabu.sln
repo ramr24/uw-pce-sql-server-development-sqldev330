@@ -16,11 +16,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{A285
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reports", "Reports", "{6F05B11C-26F9-49B9-AACA-58526C43A5C1}"
+	ProjectSection(SolutionItems) = preProject
+		Reports\DimAuthorsETLReport.rdl = Reports\DimAuthorsETLReport.rdl
+		Reports\DimStoresETLReport.rdl = Reports\DimStoresETLReport.rdl
+		Reports\DimTitlesETLReport.rdl = Reports\DimTitlesETLReport.rdl
+		Reports\DWIndependentBookSellersETLReport.rdl = Reports\DWIndependentBookSellersETLReport.rdl
+		Reports\DWIndependentBookSellersMaintReport.rdl = Reports\DWIndependentBookSellersMaintReport.rdl
+		Reports\FactSalesETLReport.rdl = Reports\FactSalesETLReport.rdl
+		Reports\FactTitleAuthorsETLReport.rdl = Reports\FactTitleAuthorsETLReport.rdl
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{1ED74910-3F4E-42B3-92A6-951F20EEF025}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\02-DWIndependentBookSellersMetadataWorksheet.xlsx = Documents\02-DWIndependentBookSellersMetadataWorksheet.xlsx
 		Documents\DWIndependentBookSellersAdminManual.docx = Documents\DWIndependentBookSellersAdminManual.docx
+		Documents\DWIndependentBookSellersAdminManual.pdf = Documents\DWIndependentBookSellersAdminManual.pdf
 		Documents\FinalAssignment.docx = Documents\FinalAssignment.docx
 	EndProjectSection
 EndProject
